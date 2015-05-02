@@ -1,0 +1,18 @@
+<h1>Todo list</h1>
+
+<%= form_for @todo, :url => { :controller => 'todos', :action => 'create' } do |f| %>
+    <%= f.label :title, "new Todo" %>
+    <%= f.text_field :title %>
+    <%= f.submit "Create" %>
+
+<% end %>
+
+<ul>
+	<% @todos.each do |todo| %>
+		<tr>
+			<td><%= todo.title %></td>
+			<td><%= link_to 'Edit', edit_todo_path(todo), :method => :get %></td>
+			<td><%= link_to 'Delete', todo_path(todo), method: :delete, data: {confirm: 'Are you sure?'}%></td>
+		</tr>
+	<%end%>
+</ul>
